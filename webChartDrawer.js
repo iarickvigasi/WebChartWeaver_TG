@@ -22,12 +22,8 @@ async function weaveRadarChart(data, name) {
             datasets: [{
                 label: name,
                 data: values,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                ],
+                backgroundColor: "#02B5B8",
+                borderColor: "#02B5B8",
                 borderWidth: 1
             }]
         },
