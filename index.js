@@ -44,6 +44,11 @@ bot.hears(chartRegex, async (ctx) => {
     const cells = await getCellsPairs(sheet, rawNumber);
 
     const name = cells[1].value;
+    if (!name || name === "") {
+        ctx.reply("Вибач, але я не знайшов нікого по цьому рядку :(");
+        return;
+    }
+
     ctx.reply("Ага, це в нас " + name + " ...");
 
     const result = calculateSoftSkillsTest(cells);
