@@ -69,6 +69,8 @@ bot.hears('hi', (ctx) => ctx.reply('Hey there'));
 
 if (WEBHOOK_DOMAIN && PORT) {
     console.log('Starting in webhook mode')
+    console.log('WEBHOOK_DOMAIN: ' + WEBHOOK_DOMAIN)
+    console.log('PORT: ' + PORT)
     bot.launch({
         webhook: {
             domain: WEBHOOK_DOMAIN,
