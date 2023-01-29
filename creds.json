@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ampli-chart-web-weaver",
+  "private_key_id": "e503cf3133f24bc38cffb8f5661e4f9bb9fbf10a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCQ+aiueZGm8xVu\n3yIK0NJVITC0wXlobsQnR+OeWY3zLbOURC26Afo3MWo9wwnYSQG3EMUM3TDEYnHn\nC+Kmm2pBtiVv1oJv+8wru6ko8MiHp8Jd8qSppAYtV67cVZaoXFvPIJ6YfseYJ1XR\naq5w4Gst721RH99aN84GLBi/fgiOVQ021hLNfHQdc0FYbTsTd9GsrsNCQk9AQF9J\n7dApM2DpXMMzowE7jHdN6zx5DXC9oAxeLhFl9ivA+itWUhYHpBSoLO6pmybsnFvz\n1evi6vKZq+hio/W9haGxLmSA4BX4GTim+jscOAlICTqHBVwTwRuR2xurAM0CNdjT\nslndXANhAgMBAAECggEAA5cbNU7va3oDot5FwozPWKpcwW01K3/qvapLGcXP/SC5\nnMdfdobMAofnwKXO3ZtZPoZcyufDaGmjtnwV3dhldkEjhjSCwHE06jRYiRoFbU6b\nQqZaq5TTTlYoj25TL9Ixt9xv8Qjauorm1ivVLBhyrw2J4INwjZRqNr7q0fs2DQhG\no70uedRgK5cnoYZBxtwz9lgQO06/78vGZn1tTq9Pt3qGZoFoHjQqC+p5BD7onP+p\nR6ZBQGDXvowPhuYeJ5GSDv6AIgOJ6yfA9p6A7lk03stezbVVwizzi3/Jts63bNxB\n0C7dC1Hs4DvsKzHA8Jji7yt3yq4mr9ehOYrq+ACXzQKBgQDBoC1Rq4Dv9E8zbN6P\ndkbOTrBCCT8F2xSbVUJP33l+4NzYVb8rSGo422igwwV40d0t7Vz0cRlUXJakwqQL\nmq7vKUljRJI0rbGrSoHNtD4AzPcTWVlQlpLQos7UW2DdXBZJ/PgHr91cJmQCHcxc\nE4C2XpPKudatcpJJug44u4uI2wKBgQC/rWahbT6NeOb6GK+/J4awoQbGF+RVI5mE\nMKKzN84CZskf3C9y9IJDe2tGQ6/RcuUNjcFbANXhvbI4+pPZQzOq2S5yjK141wXN\nJvfB7p1LZD/bpg5RUMscslzZFS69pQ1k5OTTpo/1gWu9/foLJQfX3O93FweFnXgs\nBFMhxo5rcwKBgQDBCOjFiD8WerHPKhXEXv1+RtLQMxmiw+SKa/idWsVsqc9i2jGp\nfBtyLcPkqik1Z7yjQgYvKOZAxcHl5qrXatJGWxnwHnfIjvYXOEOqiaxa7fzRTH2P\nq14ZJIchDSzH4zvRbaL1Pu5oJVoFBiIsFcF3j1i2fom5CAUx/YyaINeeiwKBgHP9\nED/bBaFCajMpQSBhYMX9i0XQK2HB2yH89FeTC1y0qjxXV3cusqz3QGESkJAkAKuE\n/l59UO/7hJ+qMlGkst1N8ydqLYcURvRwAjkelZyLm4DlKYDXbTF+VWUfxlsIR+So\nBjh1cGPV30bnK6oWzHo5vcbI7spSEehA7bVgm8o1AoGAAeRNR2AXpYKqiRPyKNc+\nfGZMjL4oXlbpjoW8sR3b8vE2BPSQrw/RUI29WfCgzv4+YPat/8Gvm62ivDo9gCdc\nPBjnCLY0BwKblRANAfQ9PjFC2j4kOKxeaHCuACMMxBuMGuOsc7VBQh+XlNJ9YaY7\nxBry1qOzeDrSxcAW42S1hOw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "telegram-chart-web-weaver@ampli-chart-web-weaver.iam.gserviceaccount.com",
+  "client_id": "100539474663797545792",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/telegram-chart-web-weaver%40ampli-chart-web-weaver.iam.gserviceaccount.com"
+}

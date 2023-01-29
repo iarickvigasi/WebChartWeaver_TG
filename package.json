@@ -1,0 +1,32 @@
+{
+  "name": "webchartweaver_tg",
+  "version": "1.0.0",
+  "description": "Telegram spider bot that weaves for you web chart. Or in common language gives you an image of radar chart based on the data provided.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iarickvigasi/WebChartWeaver_TG.git"
+  },
+  "keywords": [
+    "charts",
+    "telegram",
+    "bot"
+  ],
+  "author": "ArickVigas (iarick.vigasi@gmail.com)",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/iarickvigasi/WebChartWeaver_TG/issues"
+  },
+  "homepage": "https://github.com/iarickvigasi/WebChartWeaver_TG#readme",
+  "dependencies": {
+    "chart.js": "^3.5.1",
+    "chartjs-node-canvas": "^4.1.6",
+    "google-spreadsheet": "^3.3.0",
+    "telegraf": "^4.11.2"
+  }
+}
