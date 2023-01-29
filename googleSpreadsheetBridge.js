@@ -1,7 +1,9 @@
 import { GoogleSpreadsheet } from 'google-spreadsheet'
 // Service account credentials
 // Link with more details: https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication?id=service-account
-import credentials from './creds.json' assert { type: 'json' }
+let credentials = process.env.GOOGLE_CREDENTIALS ? JSON.parse(process.env.GOOGLE_CREDENTIALS) : null;
+import creds from './creds.json' assert { type: 'json' }
+credentials = credentials || creds
 
 // The ID of the Google Sheet
 // You can get it from the URL of the sheet
