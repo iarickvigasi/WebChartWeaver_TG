@@ -67,12 +67,17 @@ bot.hears(chartRegex, async (ctx) => {
 
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
 
-bot.launch({
-    webhook: {
-        domain: WEBHOOK_DOMAIN,
-        port: PORT,
-    }
-});
+if (WEBHOOK_DOMAIN && PORT) {
+    console.log('Starting in webhook mode')
+    bot.launch({
+        webhook: {
+            domain: WEBHOOK_DOMAIN,
+            port: PORT,
+        }
+    });
+} else {
+    bot.launch();
+}
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'));
