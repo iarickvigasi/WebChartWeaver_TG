@@ -11,6 +11,9 @@ import { displayJSON } from "./utils.js";
 // use google to find out how to do it on your environment
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 
+const WEBHOOK_DOMAIN = process.env.WEBHOOK_DOMAIN;
+const PORT = process.env.PORT;
+
 const bot = new Telegraf(TELEGRAM_TOKEN)
 
 const startMessage = "Вітаю! Я бот який плете цифрові павутинки! Якщо ви хочете побачити павутинку, напиши мені Павутинка 10, де 10 - номер рядка в таблиці"
@@ -63,7 +66,13 @@ bot.hears(chartRegex, async (ctx) => {
 })
 
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
-bot.launch();
+
+bot.launch({
+    webhook: {
+        domain: WEBHOOK_DOMAIN,
+        port: PORT,
+    }
+});
 
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'));

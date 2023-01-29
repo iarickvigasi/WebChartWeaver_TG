@@ -16,7 +16,8 @@ Or in common language gives you an image of radar chart based on the data provid
 * `TELEGRAM_TOKEN` - Telegram bot token
 * `SHEET_ID` - Google sheet id with data to parse and draw chart
 * `GOOGLE_CREDENTIALS` - Google service account credentials in JSON format, if not provided, creds.json will be used
-
+* `WEBHOOK_DOMAIN` - Domain name for webhook, your heroku app name for example
+* `PORT` - Port for webhook, 443 for example, when using Heroku it will be set automatically
 
 ### How to create Google service account
 1. Go to [Google API Console](https://console.developers.google.com/)
