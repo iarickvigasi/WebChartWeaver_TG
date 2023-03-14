@@ -1,4 +1,6 @@
-import { ChartJSNodeCanvas} from 'chartjs-node-canvas'
+import { ChartJSNodeCanvas } from 'chartjs-node-canvas'
+
+ChartJSNodeCanvas._chartJs.defaults.font.size = 20;
 
 const capitalizeLabels = (labels) => {
     return labels.map(label => label.charAt(0).toUpperCase() + label.slice(1))
