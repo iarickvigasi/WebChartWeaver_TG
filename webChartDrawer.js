@@ -45,7 +45,7 @@ async function weaveRadarChart(data, name) {
                 legend: {
                     labels: {
                         font: {
-                            size: 18
+                            size: 24
                         }
                     }
                 }
