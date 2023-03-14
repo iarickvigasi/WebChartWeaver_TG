@@ -39,7 +39,7 @@ async function weaveRadarChart(data, name) {
                     },
                     pointLabels: {
                         font: {
-                            size: 20
+                            size: 16
                         }
                     },
                     suggestedMin: 0,
