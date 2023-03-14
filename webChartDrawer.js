@@ -37,9 +37,9 @@ async function weaveRadarChart(data, name) {
                     angleLines: {
                         display: false
                     },
-                    ticks: {
+                    pointLabels: {
                         font: {
-                            size: 24
+                            size: 20
                         }
                     },
                     suggestedMin: 0,
