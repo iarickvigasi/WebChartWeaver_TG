@@ -1,6 +1,5 @@
 import { ChartJSNodeCanvas } from 'chartjs-node-canvas'
 
-ChartJSNodeCanvas._chartJs.defaults.font.size = 20;
 
 const capitalizeLabels = (labels) => {
     return labels.map(label => label.charAt(0).toUpperCase() + label.slice(1))
@@ -42,6 +41,15 @@ async function weaveRadarChart(data, name) {
                     suggestedMax: 12
                 }
             },
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            size: 18
+                        }
+                    }
+                }
+            }
         },
         plugins: [{
             id: 'background-colour',
