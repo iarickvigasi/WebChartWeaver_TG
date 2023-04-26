@@ -70,7 +70,7 @@ bot.hears(chartsRegex, async (ctx) => {
         ctx.reply("Дивлюся данні по рядкам " + numberArray.join(',') + " ...");
         const {doc, sheet} = await init();
 
-        const newArray = numberArray.map(async (number) => {
+        numberArray.map(async (number) => {
             const rawNumber = parseInt(number, 10);
             const cells = await getCellsPairs(sheet, rawNumber);
             const name = cells[1].value;
@@ -81,8 +81,12 @@ bot.hears(chartsRegex, async (ctx) => {
 
             const result = calculateSoftSkillsTest(cells);
             const chartBuffer = await weaveRadarChart(result, name);
-            ctx.reply("Результати для " + name + "\n" + displayJSON(result));
-            ctx.replyWithPhoto({source: chartBuffer});
+            return { name, result, chartBuffer };
+        }).forEach(item => {
+            if (!item) return;
+
+            ctx.reply("Результати для " + item.name + "\n" + displayJSON(item.result));
+            ctx.replyWithPhoto({source: item.chartBuffer});
         })
     } else {
         ctx.reply("Ой, шось не зрозумів... ");
