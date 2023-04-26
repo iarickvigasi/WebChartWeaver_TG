@@ -84,9 +84,11 @@ bot.hears(chartsRegex, async (ctx) => {
             return { name, result, chartBuffer };
         }).forEach(item => {
             if (!item) return;
-
-            ctx.reply("Результати для " + item.name + "\n" + displayJSON(item.result));
-            ctx.replyWithPhoto({source: item.chartBuffer});
+            // it is needed to sent messages with gap, so they don't mix with themselves
+            setTimeout(() => {
+                ctx.reply("Результати для " + item.name + "\n" + displayJSON(item.result));
+                ctx.replyWithPhoto({source: item.chartBuffer});
+            }, 500);
         })
     } else {
         ctx.reply("Ой, шось не зрозумів... ");
