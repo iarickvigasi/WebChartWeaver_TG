@@ -52,20 +52,47 @@ bot.hears(chartRegex, async (ctx) => {
         return;
     }
 
-    ctx.reply("Ага, це в нас " + name + " ...");
 
     const result = calculateSoftSkillsTest(cells);
-    ctx.reply("Так... ось результати \n" + displayJSON(result));
-
-    ctx.reply("Плету павутинку...");
-
     const chartBuffer = await weaveRadarChart(result, name);
+    ctx.reply("Результати для " + name + "\n" + displayJSON(result));
     ctx.replyWithPhoto({source: chartBuffer});
-
-    ctx.reply("Будь ласка <3");
 })
 
-bot.hears('hi', (ctx) => ctx.reply('Hey there'));
+const chartsRegex = /^Павутинки\s((\d+)(?:[,|\s]\d+)*)/i;
+// const input = "Павутинка 5, 10 20,30"; // Sample input
+
+bot.hears(chartsRegex, async (ctx) => {
+    const matchResult = ctx.match(chartsRegex);
+
+    if (matchResult) {
+        const numbersString = matchResult[1]; // Get the matched numbers string
+        const numberArray = numbersString.split(/[,|\s]/); // Split the string into an array of numbers
+
+        ctx.reply("Дивлюся данні по рядкам " + numberArray.join(',') + " ...");
+        const {doc, sheet} = await init();
+
+        const newArray = numberArray.map(async (number) => {
+            const rawNumber = parseInt(number, 10);
+            const cells = await getCellsPairs(sheet, rawNumber);
+            const name = cells[1].value;
+            if (!name || name === "") {
+                ctx.reply("Вибач, але я не знайшов нікого по рядку: " + rawNumber +" :(");
+                return null;
+            }
+
+            const result = calculateSoftSkillsTest(cells);
+            const chartBuffer = await weaveRadarChart(result, name);
+            ctx.reply("Результати для " + name + "\n" + displayJSON(result));
+            ctx.replyWithPhoto({source: chartBuffer});
+        })
+    } else {
+        ctx.reply("Ой, шось не зрозумів... ");
+    }
+
+})
+
+bot.hears('hi', (ctx) => ctx.reply('Привіт, привіт!) '));
 
 if (WEBHOOK_DOMAIN && PORT) {
     console.log('Starting in webhook mode')
