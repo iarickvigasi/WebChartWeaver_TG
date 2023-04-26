@@ -82,13 +82,14 @@ bot.hears(chartsRegex, async (ctx) => {
             const result = calculateSoftSkillsTest(cells);
             const chartBuffer = await weaveRadarChart(result, name);
             return { name, result, chartBuffer };
-        }).forEach(item => {
+        }).forEach((item, idx) => {
             if (!item) return;
-            // it is needed to sent messages with gap, so they don't mix with themselves
-            setTimeout(() => {
+            function f(item) {
                 ctx.reply("Результати для " + item.name + "\n" + displayJSON(item.result));
                 ctx.replyWithPhoto({source: item.chartBuffer});
-            }, 500);
+            }
+            // it is needed to sent messages with a gap, so they don't mix with themselves
+            setTimeout(f.bind(this, item), 500 * idx);
         })
     } else {
         ctx.reply("Ой, шось не зрозумів... ");
