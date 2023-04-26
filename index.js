@@ -82,17 +82,9 @@ bot.hears(chartsRegex, async (ctx) => {
             }
             const result = calculateSoftSkillsTest(cells);
             const chartBuffer = await weaveRadarChart(result, name);
-            texts.push({ name, result })
-            images.push(chartBuffer)
+            ctx.reply("Результати для " + name + "\n" + displayJSON(result));
+            ctx.replyWithPhoto({source: chartBuffer});
         })
-        texts.map(t => {
-            ctx.reply("Результати для " + t.name + "\n" + displayJSON(t.result));
-        })
-        setTimeout(() => {
-            images.map(i => {
-                ctx.replyWithPhoto({source: i});
-            })
-        }, 500)
     } else {
         ctx.reply("Ой, шось не зрозумів... ");
     }
