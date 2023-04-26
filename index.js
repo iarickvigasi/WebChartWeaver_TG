@@ -59,17 +59,14 @@ bot.hears(chartRegex, async (ctx) => {
     ctx.reply("Результати для " + name + "\n" + displayJSON(result));
     ctx.replyWithPhoto({source: chartBuffer});
 })
-
-const chartsRegex = /^Павутинки\s((\d+)(?:[,|\s]\d+)*)/i;
+const chartsRegex = /Павутинки\s([\d,\s]+)/;
 // const input = "Павутинка 5, 10 20,30"; // Sample input
 
 bot.hears(chartsRegex, async (ctx) => {
     const matchResult = ctx.match[1];
 
     if (matchResult) {
-        const numbersString = matchResult[1]; // Get the matched numbers string
-        const numberArray = numbersString.split(/[,|\s]/); // Split the string into an array of numbers
-
+        const numberArray = matchResult.split(',').map(Number);
         ctx.reply("Дивлюся данні по рядкам " + numberArray.join(',') + " ...");
         const {doc, sheet} = await init();
 
