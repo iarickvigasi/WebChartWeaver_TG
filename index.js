@@ -64,7 +64,7 @@ const chartsRegex = /^Павутинки\s((\d+)(?:[,|\s]\d+)*)/i;
 // const input = "Павутинка 5, 10 20,30"; // Sample input
 
 bot.hears(chartsRegex, async (ctx) => {
-    const matchResult = ctx.match(chartsRegex);
+    const matchResult = ctx.match[1];
 
     if (matchResult) {
         const numbersString = matchResult[1]; // Get the matched numbers string
