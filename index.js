@@ -70,6 +70,8 @@ bot.hears(chartsRegex, async (ctx) => {
         ctx.reply("Дивлюся данні по рядкам " + numberArray.join(',') + " ...");
         const {doc, sheet} = await init();
 
+        let texts = [];
+        let images = [];
         numberArray.map(async (number) => {
             const rawNumber = parseInt(number, 10);
             const cells = await getCellsPairs(sheet, rawNumber);
@@ -78,19 +80,19 @@ bot.hears(chartsRegex, async (ctx) => {
                 ctx.reply("Вибач, але я не знайшов нікого по рядку: " + rawNumber +" :(");
                 return null;
             }
-
             const result = calculateSoftSkillsTest(cells);
             const chartBuffer = await weaveRadarChart(result, name);
-            return { name, result, chartBuffer };
-        }).forEach((item, idx) => {
-            if (!item) return;
-            function f(item) {
-                ctx.reply("Результати для " + item.name + "\n" + displayJSON(item.result));
-                ctx.replyWithPhoto({source: item.chartBuffer});
-            }
-            // it is needed to sent messages with a gap, so they don't mix with themselves
-            setTimeout(f.bind(this, item), 500 * idx);
+            texts.push({ name, result })
+            images.push(chartBuffer)
         })
+        texts.forEach(t => {
+            ctx.reply("Результати для " + t.name + "\n" + displayJSON(t.result));
+        })
+        setTimeout(() => {
+            images.forEach(i => {
+                ctx.replyWithPhoto({source: i});
+            })
+        }, 500)
     } else {
         ctx.reply("Ой, шось не зрозумів... ");
     }
