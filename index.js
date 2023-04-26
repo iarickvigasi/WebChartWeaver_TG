@@ -85,11 +85,11 @@ bot.hears(chartsRegex, async (ctx) => {
             texts.push({ name, result })
             images.push(chartBuffer)
         })
-        texts.forEach(t => {
+        texts.map(t => {
             ctx.reply("Результати для " + t.name + "\n" + displayJSON(t.result));
         })
         setTimeout(() => {
-            images.forEach(i => {
+            images.map(i => {
                 ctx.replyWithPhoto({source: i});
             })
         }, 500)
