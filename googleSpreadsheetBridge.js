@@ -55,8 +55,8 @@ const getCellsPairs = async (sheet, rawIndex = 1, from = 0, to = 34) => {
     const cellsValues = [];
     for (let i = from; i < to; i++) {
         // get the cell by the rawIndex and the column index
-        const cell = sheet.getCell(rawIndex + 1, i)
-        cellsValues.push({ header: headers[i], value: cell.value })
+        const cell = sheet.getCell(rawIndex, i)
+        cellsValues.push({ header: headers[i], value: cell.value })чц
     }
     console.log(cellsValues)
     return cellsValues
