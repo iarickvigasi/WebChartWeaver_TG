@@ -2,7 +2,7 @@ import { Telegraf } from 'telegraf'
 
 import { init, getCellsPairs, formatDateTime } from "./googleSpreadsheetBridge.js";
 import { calculateSoftSkillsTest } from "./softSkillsTestCalculator.js";
-import { weaveRadarChart } from "./webChartDrawer.js";
+import { weaveRadarChart, weaveDoubleRadarChart } from "./webChartDrawer.js";
 import { displayJSON } from "./utils.js";
 
 // Assigning the token to a variable
@@ -20,6 +20,7 @@ const startMessage = "Вітаю! Я бот який плете цифрові �
 bot.start((ctx) => ctx.reply(startMessage))
 
 const helpMessage = "Якщо ви хочете побачити павутинку, напиши мені Павутинка 10, де 10 - номер рядка в таблиці.\n" +
+    "Якщо хочете подвійну, то напишіть Павутинка X:Y і я вам намалюю два графіки." +
     "Ви також можете написати в множині, Павутинки 10, 20, 21, -  і я почну обробляти їх усі :) \n" +
     "Якщо ви хочете побачити відповіді на тест, напиши мені Відповіді 10, де 10 - номер рядка в таблиці"
 bot.help((ctx) => ctx.reply(helpMessage))
@@ -59,9 +60,48 @@ bot.hears(chartRegex, async (ctx) => {
     ctx.reply("Результати для " + name + "\n" + displayJSON(result));
     ctx.replyWithPhoto({source: chartBuffer});
 })
+
+// Павутинки 5:8 or Павутинки 5=8
+const doubleRexex = /Павутинки\s([\d,:=]+)/;
+
+bot.hears(doubleRexex, async (ctx) => {
+    const [, matchResult] = ctx.match;
+
+    if (matchResult) {
+        let numberArray = matchResult.split(/[:,=]/).map(Number);
+        ctx.reply("Дивлюся данні по рядкам " + numberArray.join(' і ') + " ...");
+        const {doc, sheet} = await init();
+
+        const results = await Promise.all(numberArray.map(async (number) => {
+            const rawNumber = parseInt(number, 10);
+            const cells = await getCellsPairs(sheet, rawNumber);
+            const name = cells[1].value;
+            if (!name || name === "") {
+                ctx.reply("Вибач, але я не знайшов нікого по рядку: " + rawNumber +" :(");
+                return null;
+            }
+            const result = calculateSoftSkillsTest(cells);
+            return [name, result];
+        }));
+
+        const nonNullResults = results.filter(result => result !== null);
+        if (nonNullResults.length >= 2) {
+            const chartBuffer = await weaveDoubleRadarChart(
+                nonNullResults[0][1], nonNullResults[0][0],
+                nonNullResults[1][1], nonNullResults[1][0]
+            );
+            ctx.reply("Результати для " + nonNullResults[0][0] + " та " + nonNullResults[1][0]);
+            ctx.replyWithPhoto({ source: chartBuffer });
+        } else {
+            ctx.reply("Для створення спільного зображення потрібно вказати два різних рядка з даними.");
+        }
+    } else {
+        ctx.reply("Ой, шось не зрозумів... ");
+    }
+});
+
 const chartsRegex = /Павутинки\s([\d,\s]+)/;
 // const input = "Павутинка 5, 10 20,30"; // Sample input
-
 bot.hears(chartsRegex, async (ctx) => {
     const matchResult = ctx.match[1];
 
@@ -90,7 +130,6 @@ bot.hears(chartsRegex, async (ctx) => {
     }
 
 })
-
 bot.hears('hi', (ctx) => ctx.reply('Привіт, привіт!) '));
 
 if (WEBHOOK_DOMAIN && PORT) {

@@ -53,9 +53,10 @@ const getCellsPairs = async (sheet, rawIndex = 1, from = 0, to = 34) => {
     await sheet.loadCells()
     const headers = await getCells(sheet, 0, from, to)
     const cellsValues = [];
+    const index_to_take = parseInt(rawIndex) - 1;
     for (let i = from; i < to; i++) {
         // get the cell by the rawIndex and the column index
-        const cell = sheet.getCell(parseInt(rawIndex) + 1, i)
+        const cell = sheet.getCell(index_to_take, i)
         cellsValues.push({ header: headers[i], value: cell.value })
     }
     console.log(cellsValues)
