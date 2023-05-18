@@ -62,13 +62,12 @@ bot.hears(chartRegex, async (ctx) => {
 })
 
 // Павутинки 5:8 or Павутинки 5=8
-const doubleRexex = /Павутинки\s([\d,:=]+)/;
+const doubleRegexp = /Павутинки\s(\d+)\s*:\s*(\d+)/;
+bot.hears(doubleRegexp, async (ctx) => {
+    const [, num1, num2] = ctx.match;
 
-bot.hears(doubleRexex, async (ctx) => {
-    const [, matchResult] = ctx.match;
-
-    if (matchResult) {
-        let numberArray = matchResult.split(/[:,=]/).map(Number);
+    if (num1 && num2) {
+        let numberArray = [num1, num2];
         ctx.reply("Дивлюся данні по рядкам " + numberArray.join(' і ') + " ...");
         const {doc, sheet} = await init();
 
